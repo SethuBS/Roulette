@@ -89,7 +89,6 @@ public class Roulette {
                             multiplier = 36.0;
                         }
                     } catch (NumberFormatException e) {
-                        win = false;
                     }
                 }
 
