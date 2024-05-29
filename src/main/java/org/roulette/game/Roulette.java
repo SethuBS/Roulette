@@ -1,6 +1,8 @@
 package org.roulette.game;
 
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.roulette.game.dto.Bet;
 import org.roulette.game.dto.Player;
 
@@ -11,13 +13,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class Roulette {
+    private static final Logger logger = LogManager.getLogger(Roulette.class);
     private static final Map<String, Player> players = new HashMap<>();
     private static final List<Bet> bets = Collections.synchronizedList(new ArrayList<>());
     private static final Random random = new Random();
     private static final AtomicBoolean running = new AtomicBoolean(true);
 
     public static void main(String[] args) {
-        loadPlayers("players.txt");
+        loadPlayers();
         startBetting();
 
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
@@ -29,8 +32,8 @@ public class Roulette {
         }));
     }
 
-    private static void loadPlayers(String fileName) {
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+    private static void loadPlayers() {
+        try (BufferedReader br = new BufferedReader(new FileReader("players.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
@@ -40,7 +43,7 @@ public class Roulette {
                 players.put(name, new Player(name, totalWin, totalBet));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 
