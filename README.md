@@ -61,3 +61,20 @@ Player Total Win Total Bet
 Tiki_Monkey 1.0 3.0
 Barbara 8.0 4.0
 ```
+
+
+## Source Code
+### Player Class
+```java
+class Player {
+    String name;
+    double totalWin;
+    double totalBet;
+
+    public Player(String name, double totalWin, double totalBet) {
+        this.name = name;
+        this.totalWin = totalWin;
+        this.totalBet = totalBet;
+    }
+}
+
