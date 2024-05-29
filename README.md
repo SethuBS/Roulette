@@ -51,10 +51,13 @@ After each round, the game will display the winning number and the outcome of ea
 Example output:
 
 ## Number: 4
+```
 Player Bet Outcome Winnings
 Tiki_Monkey 2 LOSE 0.0
 Barbara EVEN WIN 6.0
-
+```
+```
 Player Total Win Total Bet
 Tiki_Monkey 1.0 3.0
 Barbara 8.0 4.0
+```
